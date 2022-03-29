@@ -24,6 +24,7 @@
     <ProjectGuid>{6042eec6-4932-4e14-a6b4-11062fc52d54}</ProjectGuid>
     <RootNamespace>LearnSDLwithC</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>2DEngine</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
