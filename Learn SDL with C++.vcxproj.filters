@@ -21,9 +21,15 @@
     <ClCompile Include="Src\Core\engine.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Src\Graphic\textureManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Src\Core\engine.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Graphic\textureManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

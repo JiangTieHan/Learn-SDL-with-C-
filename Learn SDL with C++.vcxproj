@@ -153,10 +153,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Src\Core\engine.cpp" />
+    <ClCompile Include="Src\Graphic\textureManager.cpp" />
     <ClCompile Include="Src\main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Src\Core\engine.h" />
+    <ClInclude Include="Src\Graphic\textureManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
