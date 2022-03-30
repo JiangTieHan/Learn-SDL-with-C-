@@ -38,5 +38,11 @@
     <ClInclude Include="Src\Physics\transform.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Src\Object\IObject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Object\gameObject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
