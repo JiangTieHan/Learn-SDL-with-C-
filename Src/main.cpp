@@ -3,10 +3,15 @@
 
 int main(int argc, char* args[])
 {
-	if (SDL_Init(SDL_INIT_EVERYTHING) != 0)
+	Engine::GetInstance()->Init();
+
+	while (Engine::GetInstance()->IsRunning())
 	{
-		cout << "SDL_Init failed" << endl;
+		Engine::GetInstance()->Events();
+		Engine::GetInstance()->Update();
+		Engine::GetInstance()->Render();
 	}
 
+	Engine::GetInstance()->Clean();
 	return 0;
 } 

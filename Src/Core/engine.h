@@ -13,15 +13,16 @@ public:
 	bool Clean();
 	void Quit();
 
-	void Update(float dt);
-
+	void Update();
 	void Render();
-
 	void Events();
+
+	inline bool IsRunning() const { return m_IsRunning; };
 
 private:
 
 	Engine() {};
+	bool m_IsRunning;
 
 	static Engine* s_Instance;
 };

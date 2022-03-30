@@ -1,7 +1,14 @@
 #include "engine.h"
+#include <iostream>
+
+using std::cout;
+using std::endl;
+
+Engine* Engine::s_Instance = nullptr;
 
 bool Engine::Init()
 {
+	m_IsRunning = true;
 	return false;
 }
 
@@ -14,8 +21,9 @@ void Engine::Quit()
 {
 }
 
-void Engine::Update(float dt)
+void Engine::Update()
 {
+	cout << "Updating..." << endl;
 }
 
 void Engine::Render()
