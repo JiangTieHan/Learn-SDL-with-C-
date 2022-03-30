@@ -1,5 +1,6 @@
 #include "engine.h"
 #include "../Graphic/textureManager.h"
+#include "../Physics/vector2D.h"
 #include <iostream>
 
 using std::cout;
@@ -51,7 +52,7 @@ void Engine::Quit()
 
 void Engine::Update()
 {
-	cout << "Updating..." << endl;
+	//cout << "Updating..." << endl;
 }
 
 void Engine::Render()

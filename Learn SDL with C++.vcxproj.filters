@@ -32,5 +32,11 @@
     <ClInclude Include="Src\Graphic\textureManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Src\Physics\vector2D.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Physics\transform.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

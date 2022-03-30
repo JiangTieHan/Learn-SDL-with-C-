@@ -159,6 +159,8 @@
   <ItemGroup>
     <ClInclude Include="Src\Core\engine.h" />
     <ClInclude Include="Src\Graphic\textureManager.h" />
+    <ClInclude Include="Src\Physics\transform.h" />
+    <ClInclude Include="Src\Physics\vector2D.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
