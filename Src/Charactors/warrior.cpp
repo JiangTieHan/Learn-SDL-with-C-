@@ -1,5 +1,6 @@
 #include "warrior.h"
 #include "../Graphic/textureManager.h"
+#include "../Inputs/input.h"
 #include <SDL.h>
 
 Warrior::Warrior(std::string TextureID, float x, float y, int width, int height, SDL_RendererFlip flip)
@@ -21,8 +22,24 @@ void Warrior::Draw()
 
 void Warrior::Update(float dt)
 {
-	m_RigidBody->Update(0.1);
-	m_Transform->Translate(m_RigidBody->GetPosition());
+	m_Animation->SetProps("player", 0, 6, 150, SDL_FLIP_NONE);
+	m_RigidBody->UnSetForce();
+
+	if (Input::GetInstance()->GetKeyDown(SDL_SCANCODE_A))
+	{
+		m_RigidBody->ApplyForceX(5.0f * BACKWARD);
+		m_Animation->SetProps("player_run", 0, 8, 150, SDL_FLIP_HORIZONTAL);
+	}
+
+	if (Input::GetInstance()->GetKeyDown(SDL_SCANCODE_D))
+	{
+		m_RigidBody->ApplyForceX(5.0f * FORWARD);
+		m_Animation->SetProps("player_run", 0, 8, 150, SDL_FLIP_NONE);
+	}
+
+	m_RigidBody->Update(0.8);
+	m_Transform->TranslateX(m_RigidBody->GetPosition().X);
+	//m_Transform->TranslateY(m_RigidBody->GetPosition().Y);
 
 	m_Animation->Update();
 }

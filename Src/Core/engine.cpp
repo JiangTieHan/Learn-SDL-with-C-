@@ -1,5 +1,4 @@
 #include <iostream>
-
 #include "engine.h"
 #include "../Graphic/textureManager.h"
 #include "../Physics/vector2D.h"
@@ -35,6 +34,7 @@ bool Engine::Init()
 	}
 
 	TextureManager::GetInstance()->Load("player", "assets/Idle.png");
+	TextureManager::GetInstance()->Load("player_run", "assets/run.png");
 
 	Player = new Warrior("player", 100, 200, 136, 96);
 
@@ -44,6 +44,7 @@ bool Engine::Init()
 bool Engine::Clean()
 {
 	TextureManager::GetInstance()->Clean();
+	Player->Clean();
 	SDL_DestroyRenderer(m_Renderer);
 	SDL_DestroyWindow(m_Window);
 	SDL_Quit();
@@ -59,11 +60,7 @@ void Engine::Quit()
 void Engine::Update()
 {
 	//cout << "Updating..." << endl;
-	if (Input::GetInstance()->GetKeyDown(SDL_SCANCODE_A))
-	{
-		cout << "A" << endl;
-	}
-
+	
 	Player->Update(0);
 }
 
