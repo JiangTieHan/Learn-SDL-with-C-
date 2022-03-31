@@ -27,8 +27,8 @@ public:
 	}
 };
 
-std::ostream& operator<<(std::ostream& out, const Vector2D& v)
+/*std::ostream& operator<<(std::ostream& out, const Vector2D& v)
 {
 	out << "[" << v.X << ", " << v.Y << "]";
 	return out;
-}
+}*/

@@ -152,11 +152,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Src\Charactors\warrior.cpp" />
     <ClCompile Include="Src\Core\engine.cpp" />
     <ClCompile Include="Src\Graphic\textureManager.cpp" />
     <ClCompile Include="Src\main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Src\Charactors\character.h" />
+    <ClInclude Include="Src\Charactors\warrior.h" />
     <ClInclude Include="Src\Core\engine.h" />
     <ClInclude Include="Src\Graphic\textureManager.h" />
     <ClInclude Include="Src\Object\gameObject.h" />

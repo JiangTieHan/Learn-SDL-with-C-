@@ -1,12 +1,14 @@
 #include "engine.h"
 #include "../Graphic/textureManager.h"
 #include "../Physics/vector2D.h"
+#include "../Charactors/warrior.h"
 #include <iostream>
 
 using std::cout;
 using std::endl;
 
 Engine* Engine::s_Instance = nullptr;
+Warrior* Player = nullptr;
 
 bool Engine::Init()
 {
@@ -30,7 +32,9 @@ bool Engine::Init()
 		return false;
 	}
 
-	TextureManager::GetInstance()->Load("tree", "assets/tree.png");
+	TextureManager::GetInstance()->Load("player", "assets/Idle.png");
+
+	Player = new Warrior("player", 100, 200, 136, 96);
 
 	return (m_IsRunning = true);
 }
@@ -53,6 +57,7 @@ void Engine::Quit()
 void Engine::Update()
 {
 	//cout << "Updating..." << endl;
+	Player->Update(0);
 }
 
 void Engine::Render()
@@ -60,7 +65,7 @@ void Engine::Render()
 	SDL_SetRenderDrawColor(m_Renderer, 124, 218, 254, 255);
 	SDL_RenderClear(m_Renderer);
 
-	TextureManager::GetInstance()->Draw("tree", 100, 100, 347, 465);
+	Player->Draw();
 	SDL_RenderPresent(m_Renderer);
 }
 
