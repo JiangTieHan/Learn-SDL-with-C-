@@ -1,6 +1,7 @@
 #pragma once
 
 #include "character.h"
+#include "../Animation/animation.h"
 
 class Warrior :public Character
 {
@@ -12,6 +13,6 @@ public:
 	virtual void Clean() override;
 
 private:
-	int m_Row, m_Frame, m_FrameCount;
-	int m_AnimationSpeed;
+
+	Animation* m_Animation;
 };
