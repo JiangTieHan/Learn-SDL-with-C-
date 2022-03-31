@@ -2,6 +2,7 @@
 
 #include "character.h"
 #include "../Animation/animation.h"
+#include "../Physics/rigidBody.h"
 
 class Warrior :public Character
 {
@@ -15,4 +16,5 @@ public:
 private:
 
 	Animation* m_Animation;
+	RigidBody* m_RigidBody;
 };

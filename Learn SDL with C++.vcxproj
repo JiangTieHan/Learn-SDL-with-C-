@@ -166,6 +166,7 @@
     <ClInclude Include="Src\Graphic\textureManager.h" />
     <ClInclude Include="Src\Object\gameObject.h" />
     <ClInclude Include="Src\Object\IObject.h" />
+    <ClInclude Include="Src\Physics\rigidBody.h" />
     <ClInclude Include="Src\Physics\transform.h" />
     <ClInclude Include="Src\Physics\vector2D.h" />
   </ItemGroup>

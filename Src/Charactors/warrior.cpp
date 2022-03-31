@@ -8,8 +8,10 @@ Warrior::Warrior(std::string TextureID, float x, float y, int width, int height,
 	m_Animation = new Animation();
 	if (m_Animation)
 	{
-		m_Animation->SetProps(TextureID, 0, 6, 120, SDL_FLIP_NONE);
+		m_Animation->SetProps(TextureID, 0, 6, 150, SDL_FLIP_NONE);
 	}
+
+	m_RigidBody = new RigidBody();
 }
 
 void Warrior::Draw()
@@ -19,6 +21,9 @@ void Warrior::Draw()
 
 void Warrior::Update(float dt)
 {
+	m_RigidBody->Update(0.1);
+	m_Transform->Translate(m_RigidBody->GetPosition());
+
 	m_Animation->Update();
 }
 
