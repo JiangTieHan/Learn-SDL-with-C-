@@ -1,8 +1,10 @@
+#include <iostream>
+
 #include "engine.h"
 #include "../Graphic/textureManager.h"
 #include "../Physics/vector2D.h"
 #include "../Charactors/warrior.h"
-#include <iostream>
+#include "../Inputs/input.h"
 
 using std::cout;
 using std::endl;
@@ -57,6 +59,11 @@ void Engine::Quit()
 void Engine::Update()
 {
 	//cout << "Updating..." << endl;
+	if (Input::GetInstance()->GetKeyDown(SDL_SCANCODE_A))
+	{
+		cout << "A" << endl;
+	}
+
 	Player->Update(0);
 }
 
@@ -71,15 +78,5 @@ void Engine::Render()
 
 void Engine::Events()
 {
-	SDL_Event event;
-	SDL_PollEvent(&event);
-	switch (event.type)
-	{
-	case SDL_QUIT:
-		Quit();
-		break;
-
-	default:
-		break;
-	}
+	Input::GetInstance()->Listen();
 }

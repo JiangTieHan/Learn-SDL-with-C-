@@ -156,6 +156,7 @@
     <ClCompile Include="Src\Charactors\warrior.cpp" />
     <ClCompile Include="Src\Core\engine.cpp" />
     <ClCompile Include="Src\Graphic\textureManager.cpp" />
+    <ClCompile Include="Src\Inputs\Input.cpp" />
     <ClCompile Include="Src\main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -164,6 +165,7 @@
     <ClInclude Include="Src\Charactors\warrior.h" />
     <ClInclude Include="Src\Core\engine.h" />
     <ClInclude Include="Src\Graphic\textureManager.h" />
+    <ClInclude Include="Src\Inputs\input.h" />
     <ClInclude Include="Src\Object\gameObject.h" />
     <ClInclude Include="Src\Object\IObject.h" />
     <ClInclude Include="Src\Physics\rigidBody.h" />
