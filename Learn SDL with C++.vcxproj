@@ -158,6 +158,7 @@
     <ClCompile Include="Src\Graphic\textureManager.cpp" />
     <ClCompile Include="Src\Inputs\Input.cpp" />
     <ClCompile Include="Src\main.cpp" />
+    <ClCompile Include="Src\Timer\timer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Src\Animation\animation.h" />
@@ -171,6 +172,7 @@
     <ClInclude Include="Src\Physics\rigidBody.h" />
     <ClInclude Include="Src\Physics\transform.h" />
     <ClInclude Include="Src\Physics\vector2D.h" />
+    <ClInclude Include="Src\Timer\timer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

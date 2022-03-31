@@ -4,6 +4,7 @@
 #include "../Physics/vector2D.h"
 #include "../Charactors/warrior.h"
 #include "../Inputs/input.h"
+#include "../Timer/timer.h"
 
 using std::cout;
 using std::endl;
@@ -60,8 +61,8 @@ void Engine::Quit()
 void Engine::Update()
 {
 	//cout << "Updating..." << endl;
-	
-	Player->Update(0);
+	float dt = Timer::GetInstance()->GetDeltaTime();
+	Player->Update(dt);
 }
 
 void Engine::Render()

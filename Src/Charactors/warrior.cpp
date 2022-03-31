@@ -37,7 +37,7 @@ void Warrior::Update(float dt)
 		m_Animation->SetProps("player_run", 0, 8, 150, SDL_FLIP_NONE);
 	}
 
-	m_RigidBody->Update(0.8);
+	m_RigidBody->Update(dt);
 	m_Transform->TranslateX(m_RigidBody->GetPosition().X);
 	//m_Transform->TranslateY(m_RigidBody->GetPosition().Y);
 
