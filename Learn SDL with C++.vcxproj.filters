@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="TinyXML">
+      <UniqueIdentifier>{d70c0732-6728-4b03-9705-d9af8a4ad93d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Src\main.cpp">
@@ -41,6 +44,18 @@
     </ClCompile>
     <ClCompile Include="Src\Map\mapParser.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Lib\TinyXML\tinyxmlparser.cpp">
+      <Filter>TinyXML</Filter>
+    </ClCompile>
+    <ClCompile Include="Lib\TinyXML\tinyxmlerror.cpp">
+      <Filter>TinyXML</Filter>
+    </ClCompile>
+    <ClCompile Include="Lib\TinyXML\tinyxml.cpp">
+      <Filter>TinyXML</Filter>
+    </ClCompile>
+    <ClCompile Include="Lib\TinyXML\tinystr.cpp">
+      <Filter>TinyXML</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -91,6 +106,12 @@
     </ClInclude>
     <ClInclude Include="Src\Map\mapParser.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Lib\TinyXML\tinystr.h">
+      <Filter>TinyXML</Filter>
+    </ClInclude>
+    <ClInclude Include="Lib\TinyXML\tinyxml.h">
+      <Filter>TinyXML</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
