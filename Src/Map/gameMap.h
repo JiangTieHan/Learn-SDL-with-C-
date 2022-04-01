@@ -1,7 +1,6 @@
 #pragma once
 #include "layer.h"
 #include <vector>
-
 class GameMap
 {
 public:
@@ -21,7 +20,12 @@ public:
 		}
 	}
 
-	inline std::vector<Layer*> GetMapLayers() const { return m_MapLayers; }
+	inline std::vector<Layer*>& GetMapLayers() { return m_MapLayers; }
+
+	GameMap() 
+	{
+		
+	};
 
 private:
 	std::vector<Layer*> m_MapLayers;

@@ -5,6 +5,7 @@
 #include "../Charactors/warrior.h"
 #include "../Inputs/input.h"
 #include "../Timer/timer.h"
+#include "../Map/mapParser.h"
 
 using std::cout;
 using std::endl;
@@ -34,6 +35,14 @@ bool Engine::Init()
 		return false;
 	}
 
+	if (!MapParser::GetInstance()->Load())
+	{
+		SDL_Log("Failed to load map SDL: %s", SDL_GetError());
+		return false;
+	}
+
+	m_LevelMap = MapParser::GetInstance()->GetMap("MAP");
+
 	TextureManager::GetInstance()->Load("player", "assets/Idle.png");
 	TextureManager::GetInstance()->Load("player_run", "assets/run.png");
 
@@ -62,6 +71,7 @@ void Engine::Update()
 {
 	//cout << "Updating..." << endl;
 	float dt = Timer::GetInstance()->GetDeltaTime();
+	m_LevelMap->Update();
 	Player->Update(dt);
 }
 
@@ -69,6 +79,8 @@ void Engine::Render()
 {
 	SDL_SetRenderDrawColor(m_Renderer, 124, 218, 254, 255);
 	SDL_RenderClear(m_Renderer);
+
+	m_LevelMap->Render();
 
 	Player->Draw();
 	SDL_RenderPresent(m_Renderer);
