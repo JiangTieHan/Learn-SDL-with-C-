@@ -152,6 +152,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Lib\TinyXML\tinystr.cpp" />
+    <ClCompile Include="Lib\TinyXML\tinyxml.cpp" />
+    <ClCompile Include="Lib\TinyXML\tinyxmlerror.cpp" />
+    <ClCompile Include="Lib\TinyXML\tinyxmlparser.cpp" />
     <ClCompile Include="Src\Animation\animation.cpp" />
     <ClCompile Include="Src\Charactors\warrior.cpp" />
     <ClCompile Include="Src\Core\engine.cpp" />
@@ -163,6 +167,8 @@
     <ClCompile Include="Src\Timer\timer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Lib\TinyXML\tinystr.h" />
+    <ClInclude Include="Lib\TinyXML\tinyxml.h" />
     <ClInclude Include="Src\Animation\animation.h" />
     <ClInclude Include="Src\Charactors\character.h" />
     <ClInclude Include="Src\Charactors\warrior.h" />
