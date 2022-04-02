@@ -2,24 +2,23 @@
 
 #include <SDL.h>
 
-typedef SDL_Rect Box;
 
 class AABB
 {
 public:
-	inline Box Get() const { return m_Box; }
-	inline void SetBuffer(int x, int y, int w, int h) { m_Buffer = { x,y,w,h }; }
+    inline SDL_Rect Get() { return m_Box; }
+    inline void SetBuffer(int x, int y, int w, int h) { m_Buffer = { x, y, w, h }; }
 
-	void Set(int x, int y, int w, int h)
-	{
-		m_Box = {
-		x - m_Buffer.x,
-		y - m_Buffer.y,
-		w - m_Buffer.w,
-		h - m_Buffer.h, };
-	}
+    void Set(int x, int y, int w, int h) {
+        m_Box = {
+            x - m_Buffer.x,
+            y - m_Buffer.y,
+            w - m_Buffer.w,
+            h - m_Buffer.h
+        };
+    }
 
 private:
-	Box m_Box;
-	Box m_Buffer;
+	SDL_Rect m_Box;
+    SDL_Rect m_Buffer;
 };

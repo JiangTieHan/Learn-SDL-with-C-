@@ -12,7 +12,7 @@ Warrior::Warrior(std::string TextureID, float x, float y, int width, int height,
 	m_JumpTime = JUMP_TIME;
 	m_JumpForce = JUMP_FORCE;
 	m_Collider = new AABB();
-	m_Collider->SetBuffer(1, 5, 1, 1);
+	m_Collider->SetBuffer(-60, -20, 0, 0);
 	m_IsGrounded = true;
 
 	m_Animation = new Animation();
@@ -81,7 +81,7 @@ void Warrior::Update(float dt)
 	m_RigidBody->Update(dt);
 	m_LastSafePosition.X = m_Transform->X;
 	m_Transform->X += m_RigidBody->GetPosition().X;
-	m_Collider->Set(m_Transform->X, m_Transform->Y, 96, 96);
+	m_Collider->Set(m_Transform->X, m_Transform->Y, 18, 50);
 
 	if (CollisionHandler::GetInstance()->MapCollision(m_Collider->Get()))
 		m_Transform->X = m_LastSafePosition.X;
@@ -90,7 +90,7 @@ void Warrior::Update(float dt)
 	m_RigidBody->Update(dt);
 	m_LastSafePosition.Y = m_Transform->Y;
 	m_Transform->Y += m_RigidBody->GetPosition().Y;
-	m_Collider->Set(m_Transform->X, m_Transform->Y, 96, 96);
+	m_Collider->Set(m_Transform->X, m_Transform->Y, 18, 50);
 
 	if (CollisionHandler::GetInstance()->MapCollision(m_Collider->Get()))
 	{
