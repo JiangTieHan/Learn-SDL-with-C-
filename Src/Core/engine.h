@@ -22,6 +22,7 @@ public:
 
 	inline bool IsRunning() const { return m_IsRunning; };
 	inline SDL_Renderer* GetRenderer() const { return m_Renderer; }
+	inline GameMap* GetGameMap() const { return m_LevelMap; }
 
 private:
 
