@@ -7,18 +7,20 @@
 #include <SDL.h>
 
 Warrior::Warrior(std::string TextureID, float x, float y, int width, int height, SDL_RendererFlip flip)
-	:Character(TextureID,x,y,width,height,flip)
+	:Character(TextureID,x,y,width,height,flip),
+	m_IsAttacking(false), m_IsCrouching(false), m_IsFalling(false), m_IsGrounded(false), m_IsJumping(false), m_IsRunning(false)
 {
 	m_JumpTime = JUMP_TIME;
 	m_JumpForce = JUMP_FORCE;
+	m_AttackTime = ATTACK_TIME;
+
 	m_Collider = new AABB();
 	m_Collider->SetBuffer(-60, -20, 0, 0);
-	m_IsGrounded = true;
 
 	m_Animation = new Animation();
 	if (m_Animation)
 	{
-		m_Animation->SetProps(TextureID, 0, 6, 150, SDL_FLIP_NONE);
+		m_Animation->SetProps(TextureID, 0, 6, 150);
 	}
 
 	m_RigidBody = new RigidBody();
@@ -30,9 +32,10 @@ Warrior::Warrior(std::string TextureID, float x, float y, int width, int height,
 
 void Warrior::Draw()
 {
-	m_Animation->Draw(m_Transform->X, m_Transform->Y, m_Width, m_Height);
+	m_Animation->Draw(m_Transform->X, m_Transform->Y, m_Width, m_Height, m_Flip);
 
-	if (true)
+	// draw collider box
+	if (false)
 	{
 		Vector2D cam = Camera::GetInstance(SCREEN_WIDTH, SCREEN_HIGHT)->GetPosition();
 		SDL_Rect box = m_Collider->Get();
@@ -44,21 +47,41 @@ void Warrior::Draw()
 
 void Warrior::Update(float dt)
 {
-	m_Animation->SetProps("player", 0, 6, 150, SDL_FLIP_NONE);
+	m_IsRunning = false;
+	m_IsCrouching = false;
 	m_RigidBody->UnSetForce();
 
-	if (Input::GetInstance()->GetKeyDown(SDL_SCANCODE_A))
+	// run forward
+	if (Input::GetInstance()->GetAxisKey(HORIZONTAL) == FORWARD && !m_IsAttacking)
 	{
-		m_RigidBody->ApplyForceX(5.0f * BACKWARD);
-		m_Animation->SetProps("player_run", 0, 8, 150, SDL_FLIP_HORIZONTAL);
+		m_RigidBody->ApplyForceX(RUN_FORCE * FORWARD);
+		m_Flip = SDL_FLIP_NONE;
+		m_IsRunning = true;
 	}
 
-	if (Input::GetInstance()->GetKeyDown(SDL_SCANCODE_D))
+	// run backward
+	if (Input::GetInstance()->GetAxisKey(HORIZONTAL) == BACKWARD && !m_IsAttacking)
 	{
-		m_RigidBody->ApplyForceX(5.0f * FORWARD);
-		m_Animation->SetProps("player_run", 0, 8, 150, SDL_FLIP_NONE);
+		m_RigidBody->ApplyForceX(RUN_FORCE * BACKWARD);
+		m_Flip = SDL_FLIP_HORIZONTAL;
+		m_IsRunning = true;
 	}
 
+	// crouch
+	if (Input::GetInstance()->GetKeyDown(SDL_SCANCODE_S))
+	{
+		m_RigidBody->UnSetForce();
+		m_IsCrouching = true;
+	}
+
+	// attack
+	if (Input::GetInstance()->GetKeyDown(SDL_SCANCODE_K))
+	{
+		m_RigidBody->UnSetForce();
+		m_IsAttacking = true;
+	}
+
+	// jump
 	if (Input::GetInstance()->GetKeyDown(SDL_SCANCODE_SPACE) && m_IsGrounded)
 	{
 		m_IsJumping = true;
@@ -76,6 +99,25 @@ void Warrior::Update(float dt)
 		m_IsJumping = false;
 		m_JumpTime = JUMP_TIME;
 	}
+
+	// fall
+	if (m_RigidBody->GetVelocity().Y > 0 && !m_IsGrounded)
+		m_IsFalling = true;
+	else
+		m_IsFalling = false;
+
+	// attack timer
+	if (m_IsAttacking && m_AttackTime > 0)
+	{
+		m_AttackTime -= dt;
+	}
+	else
+	{
+		m_IsAttacking = false;
+		m_AttackTime = ATTACK_TIME;
+	}
+
+	AnimationState();
 
 	// move on X
 	m_RigidBody->Update(dt);
@@ -105,11 +147,6 @@ void Warrior::Update(float dt)
 	//m_Transform->TranslateX(m_RigidBody->GetPosition().X);
 	//m_Transform->TranslateY(m_RigidBody->GetPosition().Y);
 
-	if (m_IsJumping || !m_IsGrounded)
-	{
-		m_Animation->SetProps("player_jump", 0, 2, 350, SDL_FLIP_NONE);
-	}
-
 	m_Origin->X = m_Transform->X + m_Width / 2;
 	m_Origin->Y = m_Transform->Y + m_Height / 2;
 
@@ -121,4 +158,30 @@ void Warrior::Clean()
 	delete m_Animation;
 	delete m_RigidBody;
 	TextureManager::GetInstance()->Drop(m_TextureID);
+}
+
+void Warrior::AnimationState()
+{
+	// idle
+	m_Animation->SetProps("player_idle", 0, 6, 150);
+
+	// runing
+	if(m_IsRunning)
+		m_Animation->SetProps("player_run", 0, 8, 150);
+
+	// crouching
+	if (m_IsCrouching)
+		m_Animation->SetProps("player_crouch", 0, 6, 200);
+
+	// jumping
+	if (m_IsJumping)
+		m_Animation->SetProps("player_jump", 0, 2, 200);
+
+	// falling
+	if (m_IsFalling)
+		m_Animation->SetProps("player_fall", 0, 2, 350);
+
+	// attacking
+	if (m_IsAttacking)
+		m_Animation->SetProps("player_attack", 0, 14, 80);
 }

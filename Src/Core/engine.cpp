@@ -45,9 +45,12 @@ bool Engine::Init()
 
 	m_LevelMap = MapParser::GetInstance()->GetMap("MAP");
 
-	TextureManager::GetInstance()->Load("player", "assets/Idle.png");
+	TextureManager::GetInstance()->Load("player_idle", "assets/Idle.png");
 	TextureManager::GetInstance()->Load("player_run", "assets/run.png");
 	TextureManager::GetInstance()->Load("player_jump", "assets/jump.png");
+	TextureManager::GetInstance()->Load("player_fall", "assets/Fall.png");
+	TextureManager::GetInstance()->Load("player_crouch", "assets/Crouch.png");
+	TextureManager::GetInstance()->Load("player_attack", "assets/Attack.png");
 	//TextureManager::GetInstance()->Load("bg", "assets/images/bg.png");
 
 	Player = new Warrior("player", 250, 400, 136, 96);
