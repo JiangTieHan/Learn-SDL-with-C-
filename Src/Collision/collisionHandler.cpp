@@ -1,6 +1,8 @@
 #include "collisionHandler.h"
 #include "../Core/engine.h"
 
+CollisionHandler* CollisionHandler::s_Instance = nullptr;
+
 CollisionHandler::CollisionHandler()
 {
 	m_CollisionLayer = (TileLayer*)Engine::GetInstance()->GetGameMap()->GetMapLayers().front();
@@ -27,9 +29,9 @@ bool CollisionHandler::MapCollision(const SDL_Rect& a) const
 	int bottom_tile = (a.y + a.h) / tileSize;
 
 	if (left_tile < 0) left_tile = 0;
-	if (right_tile > ColCount) right_tile = ColCount;
+	if (right_tile > ColCount - 1) right_tile = ColCount - 1;
 	if (top_tile < 0) top_tile = 0;
-	if (bottom_tile > RowCount) bottom_tile = RowCount;
+	if (bottom_tile > RowCount - 1) bottom_tile = RowCount - 1;
 
 	for (int i = left_tile; i <= right_tile; ++i)
 	{
