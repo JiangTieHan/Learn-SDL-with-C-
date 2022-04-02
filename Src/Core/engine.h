@@ -3,9 +3,6 @@
 #include <SDL_image.h>
 #include "../Map/gameMap.h"
 
-#define SCREEN_WIDTH 960
-#define SCREEN_HIGHT 640
-
 class Engine {
 
 public:

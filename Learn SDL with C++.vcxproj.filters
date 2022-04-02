@@ -57,6 +57,9 @@
     <ClCompile Include="Lib\TinyXML\tinystr.cpp">
       <Filter>TinyXML</Filter>
     </ClCompile>
+    <ClCompile Include="Src\Camera\camera.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Src\Core\engine.h">
@@ -112,6 +115,9 @@
     </ClInclude>
     <ClInclude Include="Lib\TinyXML\tinyxml.h">
       <Filter>TinyXML</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Camera\camera.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
