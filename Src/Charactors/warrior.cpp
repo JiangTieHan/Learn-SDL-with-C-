@@ -35,7 +35,7 @@ void Warrior::Draw()
 	m_Animation->Draw(m_Transform->X, m_Transform->Y, m_Width, m_Height, m_Flip);
 
 	// draw collider box
-	if (false)
+	if (true)
 	{
 		Vector2D cam = Camera::GetInstance(SCREEN_WIDTH, SCREEN_HIGHT)->GetPosition();
 		SDL_Rect box = m_Collider->Get();
@@ -117,8 +117,6 @@ void Warrior::Update(float dt)
 		m_AttackTime = ATTACK_TIME;
 	}
 
-	AnimationState();
-
 	// move on X
 	m_RigidBody->Update(dt);
 	m_LastSafePosition.X = m_Transform->X;
@@ -144,11 +142,10 @@ void Warrior::Update(float dt)
 		m_IsGrounded = false;
 	}
 
-	//m_Transform->TranslateX(m_RigidBody->GetPosition().X);
-	//m_Transform->TranslateY(m_RigidBody->GetPosition().Y);
-
 	m_Origin->X = m_Transform->X + m_Width / 2;
 	m_Origin->Y = m_Transform->Y + m_Height / 2;
+
+	AnimationState();
 
 	m_Animation->Update();
 }
