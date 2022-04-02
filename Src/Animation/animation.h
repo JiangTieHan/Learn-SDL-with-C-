@@ -1,20 +1,19 @@
 #pragma once
 
-#include <string>
-#include <SDL.h>
+
 class Animation
 {
 public:
-	Animation();
+	Animation(bool repeat = true) : m_Repeat(repeat), m_IsEnded(false), m_CurrentFrame(0) {}
 
-	void Update();
+	virtual void Update(float dt) = 0;
 
-	void Draw(float x, float y, int spriteWidth, int spriteHeight, SDL_RendererFlip flip = SDL_FLIP_NONE);
+	inline bool GetIsEnded() const { return m_IsEnded; }
 
-	void SetProps(std::string textureID, int spriteRow, int frameCount, int animSpeed);
+	inline int GetCurrFrame() const { return m_CurrentFrame; }
 
-private:
-	int m_SpriteRow, m_SpriteFrame;
-	int m_AnimSpeed, m_FrameCount;
-	std::string m_TextureID;
+protected:
+	bool m_Repeat;
+	bool m_IsEnded;
+	int m_CurrentFrame;
 };

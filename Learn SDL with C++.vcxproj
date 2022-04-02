@@ -156,7 +156,7 @@
     <ClCompile Include="Lib\TinyXML\tinyxml.cpp" />
     <ClCompile Include="Lib\TinyXML\tinyxmlerror.cpp" />
     <ClCompile Include="Lib\TinyXML\tinyxmlparser.cpp" />
-    <ClCompile Include="Src\Animation\animation.cpp" />
+    <ClCompile Include="Src\Animation\spriteAnimation.cpp" />
     <ClCompile Include="Src\Camera\camera.cpp" />
     <ClCompile Include="Src\Charactors\warrior.cpp" />
     <ClCompile Include="Src\Collision\collisionHandler.cpp" />
@@ -172,6 +172,7 @@
     <ClInclude Include="Lib\TinyXML\tinystr.h" />
     <ClInclude Include="Lib\TinyXML\tinyxml.h" />
     <ClInclude Include="Src\Animation\animation.h" />
+    <ClInclude Include="Src\Animation\spriteAnimation.h" />
     <ClInclude Include="Src\Camera\camera.h" />
     <ClInclude Include="Src\Charactors\character.h" />
     <ClInclude Include="Src\Charactors\warrior.h" />

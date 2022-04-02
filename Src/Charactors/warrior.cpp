@@ -17,7 +17,7 @@ Warrior::Warrior(std::string TextureID, float x, float y, int width, int height,
 	m_Collider = new AABB();
 	m_Collider->SetBuffer(-60, -20, 0, 0);
 
-	m_Animation = new Animation();
+	m_Animation = new SpriteAnimation();
 	if (m_Animation)
 	{
 		m_Animation->SetProps(TextureID, 0, 6, 150);
@@ -147,7 +147,7 @@ void Warrior::Update(float dt)
 
 	AnimationState();
 
-	m_Animation->Update();
+	m_Animation->Update(dt);
 }
 
 void Warrior::Clean()

@@ -1,7 +1,7 @@
 #pragma once
 
 #include "character.h"
-#include "../Animation/animation.h"
+#include "../Animation/spriteAnimation.h"
 #include "../Physics/rigidBody.h"
 #include "../Collision/AABB.h"
 
@@ -35,7 +35,7 @@ private:
 	float m_AttackTime;
 
 	AABB* m_Collider;
-	Animation* m_Animation;
+	SpriteAnimation* m_Animation;
 	RigidBody* m_RigidBody;
 	Vector2D m_LastSafePosition;
 };
