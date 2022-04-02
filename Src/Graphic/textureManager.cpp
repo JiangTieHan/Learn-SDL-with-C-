@@ -1,6 +1,7 @@
 #include "textureManager.h"
 #include "../Core/engine.h"
 #include "../Camera/camera.h"
+#include "../../Lib/TinyXML/tinyxml.h"
 
 TextureManager* TextureManager::s_Instance = nullptr;
 
@@ -9,18 +10,42 @@ bool TextureManager::Load(std::string id, std::string filename)
     SDL_Surface* surface = IMG_Load(filename.c_str());
     if (!surface)
     {
-        SDL_Log("Failed to load surface SDL: %s, %s", filename.c_str(), SDL_GetError());
+        SDL_Log("TextureManager::Load::Failed to load surface SDL: %s, %s", filename.c_str(), SDL_GetError());
         return false;
     }
 
     SDL_Texture* texture = SDL_CreateTextureFromSurface(Engine::GetInstance()->GetRenderer(), surface);
     if (!texture)
     {
-        SDL_Log("Failed to load texture SDL: %s, %s", filename.c_str(), SDL_GetError());
+        SDL_Log("TextureManager::Load::Failed to load texture SDL: %s, %s", filename.c_str(), SDL_GetError());
         return false;
     }
 
     m_TextureMap[id] = texture;
+    return true;
+}
+
+bool TextureManager::ParseTextures(std::string source)
+{
+    TiXmlDocument xml;
+    xml.LoadFile(source);
+    if (xml.Error())
+    {
+        std::cout << "TextureManager::ParseTextures::Fail to load: " << source << std::endl;
+        return false;
+    }
+
+    TiXmlElement* root = xml.RootElement();
+    for (TiXmlElement* e = root->FirstChildElement(); e != nullptr; e = e->NextSiblingElement())
+    {
+        if (e->Value() == std::string("texture"))
+        {
+            std::string id = e->Attribute("id");
+            std::string src = e->Attribute("source");
+            Load(id, src);
+        }
+    }
+
     return true;
 }
 

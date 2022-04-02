@@ -35,7 +35,7 @@ void Warrior::Draw()
 	m_Animation->Draw(m_Transform->X, m_Transform->Y, m_Width, m_Height, m_Flip);
 
 	// draw collider box
-	if (true)
+	if (false)
 	{
 		Vector2D cam = Camera::GetInstance(SCREEN_WIDTH, SCREEN_HIGHT)->GetPosition();
 		SDL_Rect box = m_Collider->Get();
