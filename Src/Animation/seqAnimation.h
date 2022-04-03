@@ -8,8 +8,8 @@
 
 struct Sequence
 {
-	int Speed;
-	int FrameCount;
+	int Speed = 1.0f;
+	int FrameCount = 1.0f;
 	int Width, Height;
 	std::vector<std::string> TextureIDs;
 };
@@ -24,6 +24,7 @@ public:
 	void SetCurrentSeq(const std::string &seqID);
 	inline void SetRepeat(bool repeat) { m_Repeat = repeat; }
 	void DrawFrame(float x, float y, float xScale = 1.0f, float yScale = 1.0f, SDL_RendererFlip flip = SDL_FLIP_NONE);
+	inline bool GetIsEnded() const { return m_IsEnded; }
 
 private:
 	Sequence m_CurrentSeq;

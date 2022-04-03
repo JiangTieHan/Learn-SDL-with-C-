@@ -3,6 +3,7 @@
 #include "../Graphic/textureManager.h"
 #include "../Physics/vector2D.h"
 #include "../Charactors/warrior.h"
+#include "../Charactors/enemy.h"
 #include "../Inputs/input.h"
 #include "../Timer/timer.h"
 #include "../Map/mapParser.h"
@@ -12,7 +13,6 @@ using std::cout;
 using std::endl;
 
 Engine* Engine::s_Instance = nullptr;
-Warrior* Player = nullptr;
 
 bool Engine::Init()
 {
@@ -47,7 +47,11 @@ bool Engine::Init()
 
 	TextureManager::GetInstance()->ParseTextures("assets/textures.tml");
 
-	Player = new Warrior("player", 250, 400, 136, 96);
+	Warrior* Player = new Warrior("player", 250, 400, 136, 96);
+	Enemy* Boss = new Enemy("boss_idle", 820, 240, 460, 352);
+
+	m_GameObjects.push_back(Player);
+	m_GameObjects.push_back(Boss);
 
 	Camera::GetInstance(SCREEN_WIDTH, SCREEN_HIGHT)->SetTarget(Player->GetOrigin());
 	return (m_IsRunning = true);
@@ -55,8 +59,12 @@ bool Engine::Init()
 
 bool Engine::Clean()
 {
-	TextureManager::GetInstance()->Clean();
-	Player->Clean();
+	for (auto m : m_GameObjects)
+	{
+		delete m;
+	}
+
+ 	TextureManager::GetInstance()->Clean();
 	SDL_DestroyRenderer(m_Renderer);
 	SDL_DestroyWindow(m_Window);
 	SDL_Quit();
@@ -71,10 +79,12 @@ void Engine::Quit()
 
 void Engine::Update()
 {
-	//cout << "Updating..." << endl;
 	float dt = Timer::GetInstance()->GetDeltaTime();
 	m_LevelMap->Update();
-	Player->Update(dt);
+	for (auto& m : m_GameObjects)
+	{
+		m->Update(dt);
+	}
 	Camera::GetInstance(SCREEN_WIDTH, SCREEN_HIGHT)->Update(dt);
 }
 
@@ -86,7 +96,10 @@ void Engine::Render()
 	//TextureManager::GetInstance()->Draw("bg", 0, 0, 2100, 1050);
 	m_LevelMap->Render();
 
-	Player->Draw();
+	for (auto& m : m_GameObjects)
+	{
+		m->Draw();
+	}
 	SDL_RenderPresent(m_Renderer);
 }
 

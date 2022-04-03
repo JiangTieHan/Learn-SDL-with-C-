@@ -159,6 +159,7 @@
     <ClCompile Include="Src\Animation\seqAnimation.cpp" />
     <ClCompile Include="Src\Animation\spriteAnimation.cpp" />
     <ClCompile Include="Src\Camera\camera.cpp" />
+    <ClCompile Include="Src\Charactors\enemy.cpp" />
     <ClCompile Include="Src\Charactors\warrior.cpp" />
     <ClCompile Include="Src\Collision\collisionHandler.cpp" />
     <ClCompile Include="Src\Core\engine.cpp" />
@@ -177,6 +178,7 @@
     <ClInclude Include="Src\Animation\spriteAnimation.h" />
     <ClInclude Include="Src\Camera\camera.h" />
     <ClInclude Include="Src\Charactors\character.h" />
+    <ClInclude Include="Src\Charactors\enemy.h" />
     <ClInclude Include="Src\Charactors\warrior.h" />
     <ClInclude Include="Src\Collision\AABB.h" />
     <ClInclude Include="Src\Collision\collisionHandler.h" />

@@ -154,6 +154,7 @@ void Warrior::Clean()
 {
 	delete m_Animation;
 	delete m_RigidBody;
+	delete m_Collider;
 	TextureManager::GetInstance()->Drop(m_TextureID);
 }
 

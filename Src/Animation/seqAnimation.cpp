@@ -3,20 +3,18 @@
 #include <iostream>
 #include "../Graphic/textureManager.h"
 
-SeqAnimation::SeqAnimation(bool repeat) : Animation(repeat){}
+SeqAnimation::SeqAnimation(bool repeat) : Animation(repeat) {}
 
 void SeqAnimation::Update(float dt)
 {
-	if (m_Repeat || !m_IsEnded)
-	{
+	if (m_Repeat || !m_IsEnded) {
 		m_IsEnded = false;
 		m_CurrentFrame = (SDL_GetTicks() / m_CurrentSeq.Speed) % m_CurrentSeq.FrameCount;
 	}
 
-	if (!m_Repeat && m_CurrentFrame == (m_CurrentSeq.FrameCount - 1))
-	{
+	if (!m_Repeat && m_CurrentFrame == (m_CurrentSeq.FrameCount - 1)) {
 		m_IsEnded = true;
-		m_CurrentFrame = (m_CurrentSeq.FrameCount - 1);
+		m_CurrentFrame = 0;
 	}
 }
 
@@ -33,7 +31,7 @@ bool SeqAnimation::Parse(const std::string &source)
 	TiXmlElement* root = xml.RootElement();
 	for (TiXmlElement* e = root->FirstChildElement(); e != nullptr; e = e->NextSiblingElement())
 	{
-		if (e->Value() == std::string("sequnce"))
+		if (e->Value() == std::string("sequence"))
 		{
 			Sequence seq;
 			std::string seqID = e->Attribute("id");
