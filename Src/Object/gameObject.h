@@ -5,19 +5,34 @@
 
 typedef Vector2D Point;
 
+struct Properties {
+
+public:
+	Properties(std::string textureID, int x, int y, int width, int height, SDL_RendererFlip flip = SDL_FLIP_NONE) {
+		X = x;
+		Y = y;
+		Flip = flip;
+		Width = width;
+		Height = height;
+		TextureID = textureID;
+	}
+
+public:
+	std::string TextureID;
+	int Width, Height;
+	float X, Y;
+	SDL_RendererFlip Flip;
+};
+
 class GameObject :public IObject
 {
 public:
-	GameObject(std::string TextureID, float x, float y, int width, int height, SDL_RendererFlip flip = SDL_FLIP_NONE) :
-		m_TextureID(TextureID),
-		m_Width(width),
-		m_Height(height),
-		m_Flip(flip)
-	{
-		m_Transform = new Transform(x, y);
+	GameObject(Properties* props) : m_TextureID(props->TextureID),
+		m_Width(props->Width), m_Height(props->Height), m_Flip(props->Flip) {
+		m_Transform = new Transform(props->X, props->Y);
 
-		float px = x + width / 2;
-		float py = y + height / 2;
+		float px = props->X + props->Width / 2;
+		float py = props->Y + props->Height / 2;
 		m_Origin = new Point(px, py);
 	}
 		
@@ -34,5 +49,4 @@ protected:
 	std::string m_TextureID;
 	SDL_RendererFlip m_Flip;
 	Point* m_Origin;
-
 };

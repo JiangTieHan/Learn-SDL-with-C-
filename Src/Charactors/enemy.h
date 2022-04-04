@@ -9,7 +9,7 @@
 class Enemy : public Character
 {
 public:
-	Enemy(std::string TextureID, float x, float y, int width, int height, SDL_RendererFlip flip = SDL_FLIP_NONE);
+	Enemy(Properties* props);
 
 	virtual void Draw() override;
 	virtual void Clean() override;

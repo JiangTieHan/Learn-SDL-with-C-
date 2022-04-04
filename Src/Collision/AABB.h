@@ -1,7 +1,9 @@
 #pragma once
 
 #include <SDL.h>
-
+#include "../Camera/camera.h"
+#include "../Collision/collisionHandler.h"
+#include "../Core/engine.h"
 
 class AABB
 {
@@ -16,6 +18,18 @@ public:
             w - m_Buffer.w,
             h - m_Buffer.h
         };
+    }
+
+    bool CollidWithMap() const
+    {
+        return CollisionHandler::GetInstance()->MapCollision(m_Box);
+    }
+
+    void Draw()
+    {
+        Vector2D cam = Camera::GetInstance(SCREEN_WIDTH, SCREEN_HIGHT)->GetPosition();
+        SDL_Rect box = { (int)(m_Box.x - cam.X), (int)(m_Box.y - cam.Y), m_Box.w, m_Box.h };
+        SDL_RenderDrawRect(Engine::GetInstance()->GetRenderer(), &box);
     }
 
 private:

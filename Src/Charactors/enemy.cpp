@@ -1,8 +1,10 @@
 #include "enemy.h"
 #include "../Collision/collisionHandler.h"
+#include "../Factory/objFactory.h"
 
-Enemy::Enemy(std::string TextureID, float x, float y, int width, int height, SDL_RendererFlip flip)
-	:Character(TextureID,x,y,width,height,flip)
+static Registrar<Enemy> registrar("BOSS");
+
+Enemy::Enemy(Properties* props) : Character(props)
 {
 	m_RigidBody = new RigidBody();
 	if (m_RigidBody)
@@ -21,6 +23,12 @@ Enemy::Enemy(std::string TextureID, float x, float y, int width, int height, SDL
 void Enemy::Draw()
 {
 	m_Amimation->DrawFrame(m_Transform->X, m_Transform->Y, 0.3f, 0.3f, m_Flip);
+	
+	// draw AABB
+	if (false)
+	{
+		m_Collider->Draw();
+	}
 }
 
 void Enemy::Clean()
@@ -38,7 +46,7 @@ void Enemy::Update(float dt)
 	m_Transform->X += m_RigidBody->GetPosition().X;
 	m_Collider->Set(m_Transform->X, m_Transform->Y, 140, 100);
 
-	if (CollisionHandler::GetInstance()->MapCollision(m_Collider->Get()))
+	if (m_Collider->CollidWithMap())
 		m_Transform->X = m_LastSafePosition.X;
 
 	// y movement
@@ -47,7 +55,7 @@ void Enemy::Update(float dt)
 	m_Transform->Y += m_RigidBody->GetPosition().Y;
 	m_Collider->Set(m_Transform->X, m_Transform->Y, 140, 100);
 
-	if (CollisionHandler::GetInstance()->MapCollision(m_Collider->Get()))
+	if (m_Collider->CollidWithMap())
 		m_Transform->Y = m_LastSafePosition.Y;
 
 	m_Amimation->Update(dt);

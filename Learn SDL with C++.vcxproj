@@ -163,6 +163,7 @@
     <ClCompile Include="Src\Charactors\warrior.cpp" />
     <ClCompile Include="Src\Collision\collisionHandler.cpp" />
     <ClCompile Include="Src\Core\engine.cpp" />
+    <ClCompile Include="Src\Factory\objFactory.cpp" />
     <ClCompile Include="Src\Graphic\textureManager.cpp" />
     <ClCompile Include="Src\Inputs\Input.cpp" />
     <ClCompile Include="Src\main.cpp" />
@@ -183,6 +184,7 @@
     <ClInclude Include="Src\Collision\AABB.h" />
     <ClInclude Include="Src\Collision\collisionHandler.h" />
     <ClInclude Include="Src\Core\engine.h" />
+    <ClInclude Include="Src\Factory\objFactory.h" />
     <ClInclude Include="Src\Graphic\textureManager.h" />
     <ClInclude Include="Src\Inputs\input.h" />
     <ClInclude Include="Src\Map\gameMap.h" />

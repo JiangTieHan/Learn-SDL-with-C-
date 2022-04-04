@@ -8,6 +8,7 @@
 #include "../Timer/timer.h"
 #include "../Map/mapParser.h"
 #include "../Camera/camera.h"
+#include "../Factory/objFactory.h"
 
 using std::cout;
 using std::endl;
@@ -47,8 +48,10 @@ bool Engine::Init()
 
 	TextureManager::GetInstance()->ParseTextures("assets/textures.tml");
 
-	Warrior* Player = new Warrior("player", 250, 400, 136, 96);
-	Enemy* Boss = new Enemy("boss_idle", 820, 240, 460, 352);
+	Properties* props = new Properties("player", 250, 400, 136, 96);
+	GameObject* Player = ObjectFactory::GetInstance()->CreateObject("PLAYER", props);
+
+	Enemy* Boss = new Enemy(new Properties("boss_idle", 820, 240, 460, 352));
 
 	m_GameObjects.push_back(Player);
 	m_GameObjects.push_back(Boss);
@@ -100,6 +103,7 @@ void Engine::Render()
 	{
 		m->Draw();
 	}
+
 	SDL_RenderPresent(m_Renderer);
 }
 

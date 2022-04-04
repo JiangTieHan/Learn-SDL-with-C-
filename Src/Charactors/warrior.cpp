@@ -4,10 +4,12 @@
 #include "../Camera/camera.h"
 #include "../Core/engine.h"
 #include "../Collision/collisionHandler.h"
+#include "../Factory/objFactory.h"
 #include <SDL.h>
 
-Warrior::Warrior(std::string TextureID, float x, float y, int width, int height, SDL_RendererFlip flip)
-	:Character(TextureID,x,y,width,height,flip),
+static Registrar<Warrior> registrar("PLAYER");
+
+Warrior::Warrior(Properties* props) : Character(props),
 	m_IsAttacking(false), m_IsCrouching(false), m_IsFalling(false), m_IsGrounded(false), m_IsJumping(false), m_IsRunning(false)
 {
 	m_JumpTime = JUMP_TIME;
@@ -20,7 +22,7 @@ Warrior::Warrior(std::string TextureID, float x, float y, int width, int height,
 	m_Animation = new SpriteAnimation();
 	if (m_Animation)
 	{
-		m_Animation->SetProps(TextureID, 0, 6, 150);
+		m_Animation->SetProps(m_TextureID, 0, 6, 150);
 	}
 
 	m_RigidBody = new RigidBody();
@@ -37,11 +39,7 @@ void Warrior::Draw()
 	// draw collider box
 	if (false)
 	{
-		Vector2D cam = Camera::GetInstance(SCREEN_WIDTH, SCREEN_HIGHT)->GetPosition();
-		SDL_Rect box = m_Collider->Get();
-		box.x -= cam.X;
-		box.y -= cam.Y;
-		SDL_RenderDrawRect(Engine::GetInstance()->GetRenderer(), &box);
+		m_Collider->Draw();
 	}
 }
 
@@ -123,7 +121,7 @@ void Warrior::Update(float dt)
 	m_Transform->X += m_RigidBody->GetPosition().X;
 	m_Collider->Set(m_Transform->X, m_Transform->Y, 18, 50);
 
-	if (CollisionHandler::GetInstance()->MapCollision(m_Collider->Get()))
+	if (m_Collider->CollidWithMap())
 		m_Transform->X = m_LastSafePosition.X;
 
 	// move on Y
@@ -132,7 +130,7 @@ void Warrior::Update(float dt)
 	m_Transform->Y += m_RigidBody->GetPosition().Y;
 	m_Collider->Set(m_Transform->X, m_Transform->Y, 18, 50);
 
-	if (CollisionHandler::GetInstance()->MapCollision(m_Collider->Get()))
+	if (m_Collider->CollidWithMap())
 	{
 		m_IsGrounded = true;
 		m_Transform->Y = m_LastSafePosition.Y;

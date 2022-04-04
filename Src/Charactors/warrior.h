@@ -13,7 +13,7 @@
 class Warrior :public Character
 {
 public:
-	Warrior(std::string TextureID, float x, float y, int width, int height, SDL_RendererFlip flip = SDL_FLIP_NONE);
+	Warrior(Properties* props);
 
 	virtual void Draw() override;
 	virtual void Update(float dt) override;

@@ -6,8 +6,7 @@
 class Character : public GameObject
 {
 public:
-	Character(std::string TextureID, float x, float y, int width, int height, SDL_RendererFlip flip = SDL_FLIP_NONE) :
-		GameObject(TextureID, x, y, width, height, flip){}
+	Character(Properties* props) : GameObject(props) {}
 
 	virtual void Draw() = 0;
 	virtual void Update(float dt) = 0;
